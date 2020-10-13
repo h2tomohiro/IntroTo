@@ -5,6 +5,7 @@ public class AddingValuesInLoop {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         System.out.print("I will add up the numbers you give me.");
+
         int sum = 0;
         while (true) {
             System.out.print("\nNumber:");
