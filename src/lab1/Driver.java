@@ -13,5 +13,7 @@ public class Driver {
         model2.printDetails();
         System.out.println();
         model2.displayModelDetails();
+        System.out.println();
+
     }
 }

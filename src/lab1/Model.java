@@ -71,7 +71,7 @@ public class Model {
      * @param firstName
      */
     public void setFirstName(String firstName) {
-        checkName(firstName);
+        if (checkName(firstName))
         this.firstName = firstName;
     }
 
@@ -81,7 +81,7 @@ public class Model {
      * @param lastName
      */
     public void setLastName(String lastName) {
-        checkName(firstName);
+        if (checkName(lastName))
         this.lastName = lastName;
     }
 
@@ -91,17 +91,17 @@ public class Model {
      * @param pounds
      */
     public void setWeight(double pounds){
-        checkWeight(pounds);
+        if (checkWeight(pounds))
         this.weight = pounds;
     }
 
     /**
-     * Set the weight in kilograms
+     * Convert the weight to kilograms
      * @param kilograms
      */
     public void setWeight(long kilograms){
         double convertedKg = kilograms*POUNDS_PER_KG;
-        checkWeight(convertedKg);
+        if (checkWeight(convertedKg))
         this.weight = convertedKg;
     }
 
@@ -111,7 +111,7 @@ public class Model {
      * @param inches
      */
     public void setHeight(int inches){
-        checkHeight(inches);
+        if (checkHeight(inches));
         this.height = inches;
     }
 
@@ -122,7 +122,7 @@ public class Model {
      */
     public void setHeight(int feet, int inches){
         int convertedInches = feet * INCHES_PER_FOOT + inches;
-        checkHeight(convertedInches);
+        if (checkHeight(convertedInches));
         this.height = convertedInches;
     }
 
