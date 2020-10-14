@@ -26,9 +26,11 @@ public class Model {
 
     /**
      * First constructor
+     * no-arg constructor
      */
     public Model(){
     }
+
     /**
      * Second constructor which initialize all parameters
      * @param firstName
@@ -65,7 +67,7 @@ public class Model {
 
     /**
      * Set FirstName
-     * only it is 3 to 20 characters long, otherwise do not store.
+     * it must be 3 to 20 characters long, otherwise do not store
      * @param firstName
      */
     public void setFirstName(String firstName) {
@@ -75,7 +77,7 @@ public class Model {
 
     /**
      * Set LastName
-     * only it is 3 to 20 characters long, otherwise do not store.
+     * it must be 3 to 20 characters long, otherwise do not store
      * @param lastName
      */
     public void setLastName(String lastName) {
@@ -85,8 +87,8 @@ public class Model {
 
     /**
      * Set the weight in pounds
-     * Weight must be 80 to 280 pounds or it won't be stored.
-     * @param pounds (lb)
+     * Weight must be 80 to 280 pounds or it won't be stored
+     * @param pounds
      */
     public void setWeight(double pounds){
         checkWeight(pounds);
@@ -94,8 +96,8 @@ public class Model {
     }
 
     /**
-     * Set the weight(kg) in pounds.
-     * @param kilograms (kg)
+     * Set the weight in kilograms
+     * @param kilograms
      */
     public void setWeight(long kilograms){
         double convertedKg = kilograms*POUNDS_PER_KG;
@@ -104,7 +106,7 @@ public class Model {
     }
 
     /**
-     * Set the height in inches.
+     * Set the height in inches
      * Height must be 24 to 84 inches or it won't be stored
      * @param inches
      */
@@ -112,7 +114,6 @@ public class Model {
         checkHeight(inches);
         this.height = inches;
     }
-
 
     /**
      * Set the height in inches when the input includes feet and inches
@@ -125,9 +126,9 @@ public class Model {
         this.height = convertedInches;
     }
 
-
     /**
-     * Set the canTravel if the model can travel or not
+     * Set the canTravel
+     * if the model can travel or not
      * @param canTravel
      */
     public void setCanTravel(boolean canTravel) {
@@ -135,7 +136,8 @@ public class Model {
     }
 
     /**
-     * Set weather the model smokes or not in smokes
+     * Set the setSmokes
+     * smokes or not in smokes
      * @param smokes
      */
     public void setSmokes(boolean smokes) {
@@ -159,32 +161,32 @@ public class Model {
     }
 
     /**
-     * Get height
-     * @return height
+     * Get instance height (inches)
+     * @return height (inches)
      */
     public int getHeight() {
         return height;
     }
 
     /**
-     * Get weight(kg)
-     * @return weight(kg)
+     * Get instance weight (kg)
+     * @return weight (kg)
      */
     public long getWeightKg() {
         return Math.round( weight / POUNDS_PER_KG);
     }
 
     /**
-     * Get weight(lb)
-     * @return weight(lb)
+     * Get instance weight (lb)
+     * @return weight (lb)
      */
     public double getWeight() {
         return weight;
     }
 
     /**
-     * Returns the height in feet and inches
-     * @return the height in feet and inches
+     * Returns height in feet and inches
+     * @return height in feet and inches
      */
     public String getHeightInFeetAndInches(){
         int feet = height / INCHES_PER_FOOT;
@@ -199,7 +201,7 @@ public class Model {
     }
 
     /**
-     * Get instance travel or not
+     * Get instance that travel or not
      * @return boolean
      */
     public boolean getCanTravel() {
@@ -207,7 +209,7 @@ public class Model {
     }
 
     /**
-     * Get instance smoke or not
+     * Get instance that smoke or not
      * @return boolean
      */
     public boolean getSmokes() {
@@ -218,10 +220,11 @@ public class Model {
      * Prints detail information about Model
      */
     public void printDetails() {
+        String weightPoint = String.format("%.1f", getWeight());
+
         System.out.println("Name: " + getFirstName() + " " + getLastName());
         System.out.println("Height: " + getHeightInFeetAndInches());
-        String weightInOneDec = String.format("%.1f", getWeight());
-        System.out.println("Weight: " + weightInOneDec + " pounds");
+        System.out.println("Weight: " + weightPoint + " pounds");
 
         if (getCanTravel() == true){
             System.out.println("Does travel");
@@ -240,27 +243,31 @@ public class Model {
      * @return pay rate
      */
     public int calculatePayDollarsPerHour(){
-        int rate = BASE_RATE_DOLLARS_PER_HOUR;
-        if (height >= TALL_INCHES && weight <= THIN_POUNDS) {
-            rate += TALL_THIN_BONUS_DOLLARS_PER_HOUR;
+        int perHourRate = BASE_RATE_DOLLARS_PER_HOUR;
+
+        if (weight <= THIN_POUNDS && height >= TALL_INCHES) {
+            perHourRate += TALL_THIN_BONUS_DOLLARS_PER_HOUR;
         }
         if (canTravel == true) {
-            rate += TRAVEL_BONUS_DOLLARS_PER_HOUR;
+            perHourRate += TRAVEL_BONUS_DOLLARS_PER_HOUR;
         }
         if (smokes == true) {
-            rate -= SMOKER_DEDUCTION_DOLLARS_PER_HOUR;
+            perHourRate -= SMOKER_DEDUCTION_DOLLARS_PER_HOUR;
         }
-        return rate;
+
+        return perHourRate;
     }
 
     /**
-     * Prints detail information about this Model, with its Hourly rate.
+     * Prints detail information about this Model
      */
     public void displayModelDetails() {
+        String weightInOneDec = String.format("%.1f", getWeight());
+
         System.out.println("Name: " + getFirstName() + " " + getLastName());
         System.out.println("Height: " + getHeightInFeetAndInches());
-        String weightInOneDec = String.format("%.1f", getWeight());
         System.out.println("Weight: " + weightInOneDec + " pounds");
+
         if (getCanTravel() == true){
             System.out.println("Travels: yep");
         } else {
@@ -271,6 +278,7 @@ public class Model {
         } else {
             System.out.println("Smokes: nope");
         }
-        System.out.println("Hourly rate: $"+ calculatePayDollarsPerHour());
+
+        System.out.println("Hourly rate: $" + calculatePayDollarsPerHour());
     }
 }
