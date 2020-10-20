@@ -45,7 +45,7 @@ public class GuessCity {
 
     public void RandomCity() {
         Random r = new Random();
-        int i = (int) r.nextInt(this.cts.length-1);
+        int i = (int) r.nextInt(this.cts.length - 1);
         this.ct = cts[i];
     }
 
@@ -56,7 +56,7 @@ public class GuessCity {
             String currentChar = Character.toString(ct.toLowerCase().charAt(i));
             if (correctLetters.contains(currentChar)) {
                 string += currentChar + " ";
-            }else {
+            } else {
                 string += "_ ";
             }
         }
@@ -102,10 +102,10 @@ public class GuessCity {
         boolean Over = false;
         if (wrong >= chance) {
             Over = true;
-            System.out.println("You lose!\nThe correct word was '"+ ct +"'!");
-        }else if (WordFind()) {
+            System.out.println("You lose!\nThe correct word was '" + ct + "'!");
+        } else if (WordFind()) {
             Over = true;
-            System.out.println("You win!\nYou have guessed '"+ ct +"' correctly.");
+            System.out.println("You win!\nYou have guessed '" + ct + "' correctly.");
         }
 
         return Over;
