@@ -14,7 +14,6 @@ public class Question {
     private String correctGuesses;
     private int chances;
 
-    // constructor
     public Question() {
         this.answer = randomCity();
         this.wrongGuesses = "";
@@ -22,7 +21,6 @@ public class Question {
         this.chances = 0;
     }
 
-    // getters and setters
     public String getAnswer() {
         return answer;
     }
@@ -55,7 +53,6 @@ public class Question {
         this.chances++;
     }
 
-    // methods
     public static List readAll(String file) {
         List<String> citiesList = Collections.emptyList();
         try {
