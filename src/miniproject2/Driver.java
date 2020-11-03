@@ -37,28 +37,32 @@ public class Driver {
             } else if (usernameInput.equals("2")) {
                 System.out.println("Enter name:");
                 String name = in.nextLine();
-                if (("").equals(name))
+                if (("").equals(name)) {
                     while (true) {
+                        System.out.println("you must enter this field");
                         System.out.println("Enter name:");
                         name = in.nextLine();
                         if (("").equals(name)) {
-                            System.out.println("you must enter this field");
+                            continue;
                         } else {
                             break;
                         }
                     }
+                }
                 System.out.println("Enter mobile:");
                 String mobile = in.nextLine();
-                if (("").equals(mobile))
+                if (("").equals(mobile)) {
                     while (true) {
+                        System.out.println("you must enter this field");
                         System.out.println("Enter mobile:");
                         mobile = in.nextLine();
                         if (("").equals(mobile)) {
-                            System.out.println("you must enter this field");
+                            continue;
                         } else {
                             break;
                         }
                     }
+                }
                 System.out.println("Enter work:");
                 String work = in.nextLine();
                 System.out.println("Enter home:");
@@ -85,33 +89,31 @@ public class Driver {
                 }
                 System.out.println("Enter the index of the contact to update:");
                 int index = in.nextInt();
-                if (index > contacts.getContacts().size() || index < 0) {
+                if (index > contacts.getContacts().size() - 1 || index < 0) {
                     System.out.println("Invalid number");
                 } else {
-                    //Object updatedName = contacts.getContacts().get(index);
                     String name = in.nextLine();
-                    if (("").equals(name))
                         while (true) {
                             System.out.println("Enter name:");
                             name = in.nextLine();
                             if (("").equals(name)) {
                                 System.out.println("you must enter this field");
+                                continue;
                             } else {
                                 break;
                             }
                         }
-                    System.out.println("Enter mobile:");
                     String mobile = in.nextLine();
-                    if (("").equals(mobile))
                         while (true) {
-                                System.out.println("Enter mobile:");
-                                mobile = in.nextLine();
-                                if (("").equals(mobile)) {
-                                    System.out.println("you must enter this field");
-                                } else {
-                                    break;
-                                }
+                            System.out.println("Enter mobile:");
+                            mobile = in.nextLine();
+                            if (("").equals(mobile)) {
+                                System.out.println("you must enter this field");
+                                continue;
+                            } else {
+                                break;
                             }
+                        }
                     System.out.println("Enter work:");
                     String work = in.nextLine();
                     System.out.println("Enter home:");
