@@ -5,9 +5,9 @@ import java.util.Scanner;
 
 public class Driver {
     public static void main(String[] args) {
-        Contact contact1 = new Contact("Yuki", "111-2222-3333");
-        Contact contact2 = new Contact("Derrick", "222-2222-3333");
-        Contact contact3 = new Contact("Steve", "333-2222-3333");
+        Contact contact1 = new Contact("Tomohiro", "111-2222-3333", "Osaka", "", "");
+        Contact contact2 = new Contact("Derrick Park", "222-2222-3333", "", "", "Takamatsu");
+        Contact contact3 = new Contact("Taro", "333-2222-3333", "l", "Hakata", "");
 
         ContactList contacts = new ContactList();
         contacts.addContact(contact1);
@@ -22,7 +22,7 @@ public class Driver {
         System.out.println("|5. Quit              |");
         System.out.println("+---------------------+");
 
-        while(true) {
+        while (true) {
             System.out.println("Enter your option:");
             Scanner in = new Scanner(System.in);
             String input = in.nextLine();
@@ -30,18 +30,24 @@ public class Driver {
             if (usernameInput.equals("5")) {
                 System.exit(0);
             } else if (usernameInput.equals("1")) {
-                System.out.println(usernameInput);
                 for (int i = 0; i < contacts.getContacts().size(); i++) {
                     System.out.print(i);
                     System.out.println(contacts.getContacts().get(i).toString());
                 }
             } else if (usernameInput.equals("2")) {
                 System.out.println("Enter name:");
-                String name = in.nextLine();
+                String name = in.next();
                 System.out.println("Enter mobile:");
-                String mobile = in.nextLine();
-                Contact contact = new Contact(name, mobile);
+                String mobile = in.next();
+                System.out.println("Enter work:");
+                String work = in.nextLine();
+                System.out.println("Enter home:");
+                String home = in.nextLine();
+                System.out.println("Enter city:");
+                String city = in.nextLine();
+                Contact contact = new Contact(name, mobile, work, home, city);
                 contacts.addContact(contact);
+                System.out.println("Successfully added a new contract!");
             } else if (usernameInput.equals("3")) {
                 System.out.println("Enter the index of the contact to remove:");
                 int index = in.nextInt();
@@ -53,6 +59,10 @@ public class Driver {
                     System.out.println("Successfully removed" + removedName);
                 }
             } else if (usernameInput.equals("4")) {
+                for (int i = 0; i < contacts.getContacts().size(); i++) {
+                    System.out.print(i);
+                    System.out.println(contacts.getContacts().get(i).toString());
+                }
                 System.out.println("Enter the index of the contact to update:");
                 int index = in.nextInt();
                 if (index > contacts.getContacts().size() || index < 0) {
@@ -63,9 +73,17 @@ public class Driver {
                     String name = in.next();
                     System.out.println("Enter mobile:");
                     String mobile = in.next();
-                    contacts.updateContact(index, name, mobile);
-                    System.out.println("Successfully update " + updatedName);
+                    System.out.println("Enter work:");
+                    String work = in.next();
+                    System.out.println("Enter home:");
+                    String home = in.next();
+                    System.out.println("Enter city:");
+                    String city = in.next();
+                    contacts.updateContact(index, name, mobile, work, home, city);
+                    System.out.println("Successfully update" + updatedName);
                 }
+            } else {
+                System.out.println("Invalid Input. Enter number between 1 and 5");
             }
         }
 

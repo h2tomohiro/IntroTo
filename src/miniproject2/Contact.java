@@ -3,10 +3,16 @@ package miniproject2;
 public class Contact {
     private String name;
     private String number;
+    private String work;
+    private String home;
+    private String city;
 
-    public Contact(String name, String number) {
+    public Contact(String name, String number, String work, String home, String city) {
         this.name = name;
         this.number = number;
+        this.work = work;
+        this.home = home;
+        this.city = city;
     }
 
     public String getName() {
@@ -17,6 +23,18 @@ public class Contact {
         return number;
     }
 
+    public String getWork() {
+        return work;
+    }
+
+    public String getHome() {
+        return home;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
     public void setName(String name) {
         this.name = name;
     }
@@ -25,9 +43,25 @@ public class Contact {
         this.number = number;
     }
 
+    public void setWork(String work) {
+        this.work = work;
+    }
+
+    public void setHome(String home) {
+        this.home = home;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
     @Override
     public String toString() {
-        String result = String.format(": <" + name + "> (" + number + ")");
+        String result = String.format(" <" + name + "> " +
+                                      "(mobile=" + number + ", " +
+                                      "work=" + work + ", " +
+                                      "home=" + home + ", " +
+                                      "city=" + city + ")");
         return result;
     }
 }
