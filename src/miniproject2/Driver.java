@@ -35,32 +35,26 @@ public class Driver {
                     System.out.println(contacts.getContacts().get(i).toString());
                 }
             } else if (usernameInput.equals("2")) {
-                System.out.println("Enter name:");
-                String name = in.nextLine();
-                if (("").equals(name)) {
-                    while (true) {
+                String name;
+                while (true) {
+                    System.out.println("Enter name:");
+                    name = in.nextLine();
+                    if (("").equals(name)) {
                         System.out.println("you must enter this field");
-                        System.out.println("Enter name:");
-                        name = in.nextLine();
-                        if (("").equals(name)) {
-                            continue;
-                        } else {
-                            break;
-                        }
+                        continue;
+                    } else {
+                        break;
                     }
                 }
-                System.out.println("Enter mobile:");
-                String mobile = in.nextLine();
-                if (("").equals(mobile)) {
-                    while (true) {
+                String mobile;
+                while (true) {
+                    System.out.println("Enter mobile:");
+                    mobile = in.nextLine();
+                    if (("").equals(mobile)) {
                         System.out.println("you must enter this field");
-                        System.out.println("Enter mobile:");
-                        mobile = in.nextLine();
-                        if (("").equals(mobile)) {
-                            continue;
-                        } else {
-                            break;
-                        }
+                        continue;
+                    } else {
+                        break;
                     }
                 }
                 System.out.println("Enter work:");
@@ -93,27 +87,27 @@ public class Driver {
                     System.out.println("Invalid number");
                 } else {
                     String name = in.nextLine();
-                        while (true) {
-                            System.out.println("Enter name:");
-                            name = in.nextLine();
-                            if (("").equals(name)) {
-                                System.out.println("you must enter this field");
-                                continue;
-                            } else {
-                                break;
-                            }
+                    while (true) {
+                        System.out.println("Enter name:");
+                        name = in.nextLine();
+                        if (("").equals(name)) {
+                            System.out.println("you must enter this field");
+                            continue;
+                        } else {
+                            break;
                         }
+                    }
                     String mobile = in.nextLine();
-                        while (true) {
-                            System.out.println("Enter mobile:");
-                            mobile = in.nextLine();
-                            if (("").equals(mobile)) {
-                                System.out.println("you must enter this field");
-                                continue;
-                            } else {
-                                break;
-                            }
+                    while (true) {
+                        System.out.println("Enter mobile:");
+                        mobile = in.nextLine();
+                        if (("").equals(mobile)) {
+                            System.out.println("you must enter this field");
+                            continue;
+                        } else {
+                            break;
                         }
+                    }
                     System.out.println("Enter work:");
                     String work = in.nextLine();
                     System.out.println("Enter home:");
