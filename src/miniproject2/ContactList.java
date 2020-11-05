@@ -7,7 +7,6 @@ public class ContactList {
     };
 
     public ContactList(ArrayList contacts) {
-        this.contacts = contacts;
     }
 
     public ArrayList getContacts() {

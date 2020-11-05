@@ -1,32 +1,33 @@
 package miniproject2;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Driver {
     public static void main(String[] args) {
-        Contact contact1 = new Contact("Tomohiro Meo", "111-2222-3333", "a", "Fukuoka", "Hakata");
-        Contact contact2 = new Contact("Derrick Park", "333-4444-5555", "b", "Kagawa", "Takamatsu");
-        Contact contact3 = new Contact("Taro Yamada", "6666-7777-8888", "c", "Osaka", "Namba");
+        Contact contact1 = new Contact("Tomohiro Meo", "111-2222-3333", "333-4444-5555", "6666-7777-8888", "Hakata");
+        Contact contact2 = new Contact("Derrick Park", "333-4444-5555", "111-2222-3333", "6666-7777-8888", "Takamatsu");
+        Contact contact3 = new Contact("Taro Yamada", "6666-7777-8888", "333-4444-5555", "111-2222-3333", "Namba");
 
         ContactList contacts = new ContactList();
         contacts.addContact(contact1);
         contacts.addContact(contact2);
         contacts.addContact(contact3);
 
-        System.out.println("+---- Contact App ----+");
-        System.out.println("|1. List all Contacts |");
-        System.out.println("|2. Add new Contact   |");
-        System.out.println("|3. Remove Contact    |");
-        System.out.println("|4. Update Contact    |");
-        System.out.println("|5. Quit              |");
-        System.out.println("+---------------------+");
-
         while (true) {
+
+            System.out.println("+---- Contact App ----+");
+            System.out.println("|1. List all Contacts |");
+            System.out.println("|2. Add new Contact   |");
+            System.out.println("|3. Remove Contact    |");
+            System.out.println("|4. Update Contact    |");
+            System.out.println("|5. Quit              |");
+            System.out.println("+---------------------+");
+
             System.out.println("Enter your option:");
             Scanner in = new Scanner(System.in);
             String input = in.nextLine();
             String usernameInput = InputCollector.getUserInput(input);
+
             if (usernameInput.equals("5")) {
                 System.exit(0);
             } else if (usernameInput.equals("1")) {
@@ -41,7 +42,6 @@ public class Driver {
                     name = in.nextLine();
                     if (("").equals(name)) {
                         System.out.println("you must enter this field");
-                        continue;
                     } else {
                         break;
                     }
@@ -52,7 +52,6 @@ public class Driver {
                     mobile = in.nextLine();
                     if (("").equals(mobile)) {
                         System.out.println("you must enter this field");
-                        continue;
                     } else {
                         break;
                     }
@@ -92,7 +91,6 @@ public class Driver {
                         name = in.nextLine();
                         if (("").equals(name)) {
                             System.out.println("you must enter this field");
-                            continue;
                         } else {
                             break;
                         }
@@ -103,7 +101,6 @@ public class Driver {
                         mobile = in.nextLine();
                         if (("").equals(mobile)) {
                             System.out.println("you must enter this field");
-                            continue;
                         } else {
                             break;
                         }
