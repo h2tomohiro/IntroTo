@@ -58,7 +58,7 @@ public class Contact {
     @Override
     public String toString() {
         String format;
-        format = "<" + name + "> (Mobile:" + number;
+        format = "<" + name + "> (mobile=" + number;
         format = work.equals("")? format:format +", Work=" + work;
         format = home.equals("")? format:format +", Home=" + home;
         format = city.equals("")? format:format +", City=" + city;

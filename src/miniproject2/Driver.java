@@ -5,9 +5,9 @@ import java.util.Scanner;
 
 public class Driver {
     public static void main(String[] args) {
-        Contact contact1 = new Contact("Derrick Park", "222-2222-3333", "a", "Fukuoka", "Hakata");
-        Contact contact2 = new Contact("Derrick Park", "222-2222-3333", "b", "Kagawa", "Takamatsu");
-        Contact contact3 = new Contact("Taro", "333-2222-3333", "c", "Osaka", "Namba");
+        Contact contact1 = new Contact("Tomohiro Meo", "111-2222-3333", "a", "Fukuoka", "Hakata");
+        Contact contact2 = new Contact("Derrick Park", "333-4444-5555", "b", "Kagawa", "Takamatsu");
+        Contact contact3 = new Contact("Taro Yamada", "6666-7777-8888", "c", "Osaka", "Namba");
 
         ContactList contacts = new ContactList();
         contacts.addContact(contact1);
