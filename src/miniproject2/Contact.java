@@ -57,11 +57,12 @@ public class Contact {
 
     @Override
     public String toString() {
-        String result = String.format(" <" + name + "> " +
-                                      "(mobile=" + number + ", " +
-                                      "work=" + work + ", " +
-                                      "home=" + home + ", " +
-                                      "city=" + city + ")");
-        return result;
+        String format;
+        format = "<" + name + "> (Mobile:" + number;
+        format = work.equals("")? format:format +", Work=" + work;
+        format = home.equals("")? format:format +", Home=" + home;
+        format = city.equals("")? format:format +", City=" + city;
+        format = format + ")";
+        return format;
     }
 }
