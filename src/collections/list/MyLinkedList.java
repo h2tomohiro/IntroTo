@@ -10,7 +10,8 @@ public class MyLinkedList<E> {
     private Node<E> head, tail; // null
     private int size; // 0
 
-    public MyLinkedList() { }
+    public MyLinkedList() {
+    }
 
     // O(1)
     public void addFirst(E e) {
@@ -78,8 +79,22 @@ public class MyLinkedList<E> {
 
     // O(1)
     public E removeLast() {
-        // TODO: Implement Me;
-        return null;
+        final Node<E> t = tail;
+        if (t == null) {
+            throw new NoSuchElementException("lists are empty");
+        }
+        E data = t.data;
+        if (size == 1) {
+            head = null;
+            tail = null;
+        } else {
+            Node<E> prev = getNodeAt(size - 2);
+            t.data = null;
+            prev.next = null;
+            tail = prev;
+        }
+        size--;
+        return data;
     }
 
     // O(1)
@@ -100,13 +115,13 @@ public class MyLinkedList<E> {
 
     private Node<E> getNodeAt(int index) {
         if (index < 0 || index >= size) {
-            throw new IndexOutOfBoundsException("index: " + index + ", size: " + size);
+            throw new IndexOutOfBoundsException();
         }
-        Node<E> cur = head;
-        for (int i = 0; i < index; i++) {
-            cur = cur.next;
+        Node<E> current = head;
+        for (int h = 0; h < index; h++) {
+            current = current.next;
         }
-        return cur;
+        return current;
     }
 
     // O(N)
@@ -145,22 +160,57 @@ public class MyLinkedList<E> {
 
     /**
      * Remove the element e from the list
+     *
      * @param e
      * @return
      */
     public boolean remove(E e) {
-        // TODO: Implement Me
-        return true;
+        int index = -1;
+        if (head.data == e) {
+            removeFirst();
+            return true;
+        }
+        Node<E> cur = head.next;
+        for (int i = 1; i < size - 1; i++) {
+            if (cur.data == e) {
+                index = i;
+                getNodeAt(index - 1).next = cur.next;
+                size--;
+                return true;
+            }
+            cur = cur.next;
+        }
+        if (tail.data == e) {
+            index = size - 1;
+            removeLast();
+            return true;
+        }
+        return false;
     }
 
     /**
      * Remove the element at index
      * O(N)
+     *
      * @param index
      * @return
      */
     public boolean remove(int index) {
-        // TODO: Implement Me
+        if (index < 0) {
+            throw new IndexOutOfBoundsException(index + "," + size);
+        }
+        if (index == 0) {
+            removeFirst();
+        } else if (index == size - 1) {
+            removeLast();
+        } else {
+            Node<E> cur = head;
+            for (int i = 0; i < index - 2; i++) {
+                cur = cur.next;
+            }
+            cur.next = getNodeAt(index + 1);
+            size--;
+        }
         return true;
     }
 
@@ -168,9 +218,10 @@ public class MyLinkedList<E> {
     /**
      * Returns the index of the last occurrence of element e
      * O(N)
-     *
+     * <p>
      * ll = [1, 1, 2, 3, 1, 5, 1, 2]
      * ll.lastIndexOf(1) -> 6
+     *
      * @param e
      * @return the index of the last occurrence of element e
      */
@@ -186,7 +237,15 @@ public class MyLinkedList<E> {
      * "C" -> "B" -> "A" -> null
      */
     public void reverse() {
-        // TODO: Implement Me
+        Node<E> now = head;
+        Node<E> next = null;
+        Node<E> previous = null;
+        while (now != null) {
+            next = now.next;
+            now.next = previous;
+            previous = now;
+            now = next;
+        }
     }
 
     // O(N)

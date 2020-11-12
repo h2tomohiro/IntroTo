@@ -1,12 +1,7 @@
 package collections.list;
 
+import java.util.*;
 
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
-import java.util.ListIterator;
-import java.util.RandomAccess;
 
 public class MyArrayList implements List, RandomAccess {
     private static final int DEFAULT_SIZE = 10;
@@ -14,7 +9,6 @@ public class MyArrayList implements List, RandomAccess {
     private int size;
 
     public MyArrayList() {
-        // TODO: Implement Me
         elementData = new Object[DEFAULT_SIZE];
     }
 
@@ -44,8 +38,7 @@ public class MyArrayList implements List, RandomAccess {
 
     @Override
     public boolean contains(Object o) {
-        // TODO: Implement Me
-        return false;
+        return indexOf(o) >= 0;
     }
 
     @Override
@@ -56,8 +49,7 @@ public class MyArrayList implements List, RandomAccess {
 
     @Override
     public Object[] toArray() {
-        // TODO: Implement Me
-        return new Object[0];
+        return Arrays.copyOf(elementData, size);
     }
 
     @Override
@@ -83,15 +75,24 @@ public class MyArrayList implements List, RandomAccess {
 
     @Override
     public boolean remove(Object o) {
-        // TODO: Implement Me
-        // find the index of Object o; (linear search)
-        // shift all the elements after the index to left
+        for (int i = 0; i < elementData.length; i++) {
+            if (elementData[i] == o) {
+                for (int j = i; j < elementData.length - 1; j++) {
+                    elementData[j] = elementData[j + 1];
+                }
+                break;
+            }
+        }
         return false;
     }
 
     @Override
     public boolean containsAll(Collection c) {
-        // TODO: Implement Me
+        for (int i = 0; i < elementData.length; i++) {
+            if (elementData[i] == c) {
+                return true;
+            }
+        }
         return false;
     }
 
@@ -103,8 +104,11 @@ public class MyArrayList implements List, RandomAccess {
 
     @Override
     public boolean addAll(int index, Collection c) {
-        // TODO: Implement Me
-        return false;
+        boolean flag = true;
+        for (Object obj : c) {
+            flag &= remove(obj);
+        }
+        return flag;
     }
 
     @Override
@@ -115,8 +119,18 @@ public class MyArrayList implements List, RandomAccess {
 
     @Override
     public boolean retainAll(Collection c) {
-        // TODO: Implement Me
-        return false;
+        if (c == null) {
+            throw new NullPointerException("collection is null");
+        }
+        Iterator itr = iterator();
+        boolean found = false;
+        while (itr.hasNext()) {
+            if (!c.contains(itr.next())) {
+                itr.remove();
+                found = true;
+            }
+        }
+        return found;
     }
 
     @Override
@@ -131,20 +145,30 @@ public class MyArrayList implements List, RandomAccess {
     public Object get(int index) {
         // TODO: Implement Me
         if (index < 0 || index >= size) {
-            throw new ArrayIndexOutOfBoundsException("Index: " + index + ", Size: " + size);
+            throw new ArrayIndexOutOfBoundsException();
         }
         return elementData[index];
     }
 
     @Override
     public Object set(int index, Object element) {
-        // TODO: Implement Me
-        return null;
+        Objects.checkIndex(index, size);
+        Object oldVal = elementData[index];
+        elementData[index] = element;
+        return oldVal;
     }
 
     @Override
     public void add(int index, Object element) {
-        // TODO: Implement Me
+        if (index < 0 || index > size) {
+            throw new ArrayIndexOutOfBoundsException("Index " + index + ", size: " + size);
+        }
+        add(element);
+
+        for (int i = size - 1; i > index; i++) {
+            elementData[i] = elementData[i - 1];
+        }
+        elementData[index] = element;
     }
 
     @Override
@@ -155,14 +179,22 @@ public class MyArrayList implements List, RandomAccess {
 
     @Override
     public int indexOf(Object o) {
-        // TODO: Implement Me
-        return 0;
+        for (int i = 0; i < size; i++) {
+            if (o.equals(elementData[i])) {
+                return i;
+            }
+        }
+        return -1;
     }
 
     @Override
     public int lastIndexOf(Object o) {
-        // TODO: Implement Me
-        return 0;
+        for (int i = size - 1; i >= 0; i++) {
+            if (o.equals(elementData[i])) {
+                return i;
+            }
+        }
+        return -1;
     }
 
     @Override
@@ -179,7 +211,9 @@ public class MyArrayList implements List, RandomAccess {
 
     @Override
     public List subList(int fromIndex, int toIndex) {
-        // TODO: Implement Me
+        if (fromIndex < 0 || toIndex >= size || fromIndex > toIndex) {
+            throw new IndexOutOfBoundsException();
+        }
         return null;
     }
 }
